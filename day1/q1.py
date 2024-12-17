@@ -1,12 +1,11 @@
-from rich import print
 from pathlib import Path
+
+from rich import print
 
 data = []
 path = Path(__file__).parent / "data.txt"
 with open(path, "r") as file:
-    data.extend(
-        (int(line.split(" ")[0]), int(line.split(" ")[-1])) for line in file
-    )
+    data.extend((int(line.split(" ")[0]), int(line.split(" ")[-1])) for line in file)
 list1 = [x[0] for x in data]
 list2 = [x[1] for x in data]
 list1.sort()

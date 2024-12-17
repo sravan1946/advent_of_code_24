@@ -1,15 +1,19 @@
-from rich import print
 from pathlib import Path
+
+from rich import print
 from tqdm import tqdm
 
 with open(Path(__file__).parent / "data.txt") as file:
     data = [list(map(int, line.strip().split())) for line in file]
 
+
 def is_asc(data: list[int]) -> bool:
-    return all(data[i] >= data[i+1] for i in range(len(data)-1))
+    return all(data[i] >= data[i + 1] for i in range(len(data) - 1))
+
 
 def is_dec(data: list[int]) -> bool:
-    return all(data[i] <= data[i+1] for i in range(len(data)-1))
+    return all(data[i] <= data[i + 1] for i in range(len(data) - 1))
+
 
 def is_safe(data: list[int]) -> bool:
     if not is_asc(data) and not is_dec(data):
@@ -19,8 +23,8 @@ def is_safe(data: list[int]) -> bool:
         for i in range(len(data) - 1)
     )
 
-count = sum(bool(is_safe(li))
-        for li in tqdm(data, desc="part 1"))
+
+count = sum(bool(is_safe(li)) for li in tqdm(data, desc="part 1"))
 print("part 1:", count)
 
 count = 0

@@ -1,8 +1,9 @@
-from rich import print
-from typing import List
 import re
-from tqdm import tqdm
 from pathlib import Path
+from typing import List
+
+from rich import print
+from tqdm import tqdm
 
 with open(Path(__file__).parent / "data.txt") as file:
     data = file.read()
