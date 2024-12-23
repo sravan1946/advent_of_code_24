@@ -5,7 +5,7 @@ from typing import List
 from rich import print
 from tqdm import tqdm
 
-with open(Path(__file__).parent / "testdata.txt") as file:
+with open(Path(__file__).parent / "data.txt") as file:
     temp_data = file.read().split("\n")
     data = [list(line) for line in temp_data]
 
@@ -101,21 +101,20 @@ mas = 0
 for line_no, line in tqdm(enumerate(data)):
     for index, v in enumerate(line):
         if (line_no == 0) or (index == 0) or (line_no == len(data) - 1) or (index == len(line) - 1):
-            print("skipping", line_no, index)
+            # print("skipping", line_no, index)
             continue
-        if (line_no == 7):
-            print(line_no, index)
         if (
             v == "A"
             and (
-                data[line_no - 1][index-1] == "M" and data[line_no + 1][index+1] == "S"
-                or data[line_no - 1][index-1] == "S" and data[line_no + 1][index+1] == "M"
+                (data[line_no - 1][index-1] == "M" and data[line_no + 1][index+1] == "S")
+                or (data[line_no - 1][index-1] == "S" and data[line_no + 1][index+1] == "M")
             )
             and (
-                data[line_no - 1][index+1] == "M" and data[line_no + 1][index-1] == "S"
-                or data[line_no - 1][index+1] == "S" and data[line_no + 1][index-1] == "M"
+                (data[line_no - 1][index+1] == "S" and data[line_no + 1][index-1] == "M")
+                or 
+                (data[line_no - 1][index+1] == "M" and data[line_no + 1][index-1] == "S")
             )
         ):
-            print("found", line_no, index)
+            # print("found", line_no, index)
             mas += 1
-print("mas:", mas)
+print("Part 2:", mas)
