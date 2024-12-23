@@ -24,11 +24,11 @@ for line in to_order:
         order_to_check = []
         for orders in order:
             if digit in orders and (
-                                digit == orders[0]
-                                and orders[1] in line
-                                or digit != orders[0]
-                                and orders[0] in line
-                            ):
+                digit == orders[0]
+                and orders[1] in line
+                or digit != orders[0]
+                and orders[0] in line
+            ):
                 order_to_check.append(orders)
         for check in order_to_check:
             idx1 = line.index(check[0])
@@ -51,4 +51,3 @@ for line in valid:
         if line == _line:
             to_order.remove(_line)
             break
-

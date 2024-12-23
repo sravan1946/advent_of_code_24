@@ -64,7 +64,7 @@ for line_no, line in tqdm(enumerate(data)):
             d1 += 1
 
     for index, v in enumerate(line):
-        if  line_no >= len(data) - 3 or index <= 2:
+        if line_no >= len(data) - 3 or index <= 2:
             continue
         # print(line_no, len(data), index, len(line))
         if (
@@ -100,19 +100,35 @@ mas = 0
 
 for line_no, line in tqdm(enumerate(data)):
     for index, v in enumerate(line):
-        if (line_no == 0) or (index == 0) or (line_no == len(data) - 1) or (index == len(line) - 1):
+        if (
+            (line_no == 0)
+            or (index == 0)
+            or (line_no == len(data) - 1)
+            or (index == len(line) - 1)
+        ):
             # print("skipping", line_no, index)
             continue
         if (
             v == "A"
             and (
-                (data[line_no - 1][index-1] == "M" and data[line_no + 1][index+1] == "S")
-                or (data[line_no - 1][index-1] == "S" and data[line_no + 1][index+1] == "M")
+                (
+                    data[line_no - 1][index - 1] == "M"
+                    and data[line_no + 1][index + 1] == "S"
+                )
+                or (
+                    data[line_no - 1][index - 1] == "S"
+                    and data[line_no + 1][index + 1] == "M"
+                )
             )
             and (
-                (data[line_no - 1][index+1] == "S" and data[line_no + 1][index-1] == "M")
-                or 
-                (data[line_no - 1][index+1] == "M" and data[line_no + 1][index-1] == "S")
+                (
+                    data[line_no - 1][index + 1] == "S"
+                    and data[line_no + 1][index - 1] == "M"
+                )
+                or (
+                    data[line_no - 1][index + 1] == "M"
+                    and data[line_no + 1][index - 1] == "S"
+                )
             )
         ):
             # print("found", line_no, index)
